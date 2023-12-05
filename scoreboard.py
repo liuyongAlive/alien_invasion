@@ -13,7 +13,7 @@ class Scoreboard():
 
     # 字体设置
     self.text_color = (30, 30, 30)
-    self.font = pygame.font.SysFont("youyuan", 48)
+    self.font = pygame.font.Font(ai_settings.light_font, 24)
 
     # 初始得分图像
     self.prep_score()

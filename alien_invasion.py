@@ -31,7 +31,7 @@ def run_game():
   bullets = Group()
   aliens = Group()
 
-  ai_settings.bg_color = np.array(colors.to_rgb('gray')) * 256
+  ai_settings.bg_color = (46, 78, 126) # 藏青色
   gf.create_fleet(ai_settings, screen, ship, aliens)
 
   # 开始游戏主循环

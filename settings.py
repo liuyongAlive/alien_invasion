@@ -3,11 +3,15 @@ class Settings():
   Settings 存储所有的设置类
   """
 
-  def __init__(self, screen_width = 1200, screen_height = 800, bg_color=(230,230,230)) -> None:
+  def __init__(self, screen_width = 1600, screen_height = 900, bg_color=(230,230,230)) -> None:
     # 屏幕设置
     self.screen_width = screen_width
     self.screen_height = screen_height
     self.bg_color = bg_color
+    
+    # 字体设置
+    self.light_font = 'fonts/Alibaba-PuHuiTi/Alibaba-PuHuiTi-Light.ttf'
+    self.bold_font = 'fonts/Alibaba-PuHuiTi/Alibaba-PuHuiTi-Bold.ttf'
 
     # 飞船设置
     self.ship_speed_factor = 0.8
