@@ -45,4 +45,4 @@ class Ship(Sprite):
 
   def center_ship(self):
      self.centerx = self.screen_rect.centerx
-     self.centery = self.screen_rect.bottom + self.rect.height / 2
+     self.centery = self.screen_rect.bottom - self.rect.height / 2

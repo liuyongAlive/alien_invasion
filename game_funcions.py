@@ -11,15 +11,15 @@ def check_keydown_events(event, ai_settings, screen, stats, sb, ship, aliens, bu
     ship.moving_right = True
   elif event.key == pygame.K_LEFT:
     ship.moving_left = True
-  elif event.key == pygame.K_UP:
-    ship.moving_up = True
-  elif event.key == pygame.K_DOWN:
-    ship.moving_down = True
+  # elif event.key == pygame.K_UP:
+  #   ship.moving_up = True
+  # elif event.key == pygame.K_DOWN:
+  #   ship.moving_down = True
   elif event.key == pygame.K_SPACE:
     fire_bullet(ai_settings, screen, ship, bullets)
   elif event.key == pygame.K_q:
     sys.exit()
-  elif event.key == pygame.K_p:
+  elif event.key == pygame.K_p and not stats.game_active:
     start_game(ai_settings, screen, stats, sb, ship, aliens, bullets)
 
 def check_keyup_events(event, ship):
@@ -96,6 +96,7 @@ def update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets, play_bu
 def fire_bullet(ai_settings, screen, ship, bullets):
   if len(bullets) < ai_settings.bullets_allowed:
       new_bullet = Bullet(ai_settings, screen, ship)
+      ai_settings.sound_biu.play()
       bullets.add(new_bullet)
 
 def update_bullets(ai_settings, screen, stats, sb, ship, aliens, bullets):
@@ -110,9 +111,10 @@ def check_bullet_alien_collisions(ai_settings, screen, stats, sb, ship, aliens, 
   # 检查是否有子弹击中外星人
   collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
   if collisions:
+    ai_settings.sound_boom.play()
     for aliens in collisions.values():
       stats.score += ai_settings.alien_points * len(aliens)
-      sb.prep_score()                           
+      sb.prep_score()
     check_high_score(stats, sb)
 
   # 删除子弹和重新生成外星人
@@ -140,7 +142,7 @@ def create_alien(ai_settings, screen, aliens, alien_number, row_number):
   alien_width = alien.rect.width
   alien.x = alien_width + 2 * alien_width * alien_number
   alien.rect.x = alien.x
-  alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
+  alien.rect.y = alien.rect.height + alien.rect.height * row_number
   aliens.add(alien)
 
 def create_fleet(ai_settings, screen, ship, aliens):

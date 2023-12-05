@@ -1,4 +1,5 @@
 import sys
+from time import sleep
 import pygame
 from pygame.sprite import Group
 import numpy as np
@@ -34,8 +35,11 @@ def run_game():
   ai_settings.bg_color = (46, 78, 126) # 藏青色
   gf.create_fleet(ai_settings, screen, ship, aliens)
 
+  
+  clock = pygame.time.Clock()
   # 开始游戏主循环
   while True:
+    clock.tick(ai_settings.FPS)
     gf.check_events(ai_settings, screen, stats, sb, play_button, ship, aliens, bullets)
 
     if stats.game_active:

@@ -1,3 +1,6 @@
+import pygame
+
+
 class Settings():
   """
   Settings 存储所有的设置类
@@ -14,7 +17,7 @@ class Settings():
     self.bold_font = 'fonts/Alibaba-PuHuiTi/Alibaba-PuHuiTi-Bold.ttf'
 
     # 飞船设置
-    self.ship_speed_factor = 0.8
+    self.ship_speed_factor = 1.5
     self.ship_limit = 3
 
     # 子弹设置
@@ -29,6 +32,7 @@ class Settings():
     self.fleet_drop_speed = 5
 
     # 加快节奏
+    self.FPS = 120
     self.speedup_scale = 1.1
     self.score_scale = 1.5
 
@@ -44,6 +48,10 @@ class Settings():
 
     # 记分
     self.alien_points = 50
+
+    # 声音
+    self.sound_biu = pygame.mixer.Sound('sounds/biu.mp3')
+    self.sound_boom = pygame.mixer.Sound('sounds/boom.mp3')
 
   def increase_speed(self):
     """提高速度设置和得分设置"""
